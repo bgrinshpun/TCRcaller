@@ -14,6 +14,7 @@ FOR HELP WITH OPTIONS
 
 ## Dependencies:
 SAMtools: http://samtools.sourceforge.net/
+
 Burrows Wheel Aligner (BWA): http://bio-bwa.sourceforge.net/
 
 If the input is a fastq file and must first be mapped, a properly indexed fasta reference file is required.
