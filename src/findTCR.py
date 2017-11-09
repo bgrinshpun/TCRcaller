@@ -14,7 +14,7 @@ chain=sys.argv[2]
 coordinatefile=sys.argv[3]
 Vmotiffile=sys.argv[4]
 Jmotiffile=sys.argv[5]
-codonmap=sys.argv[6]
+codonmapfile=sys.argv[6]
 refch=sys.argv[7]
 
 
@@ -37,7 +37,7 @@ indices=[1,2,3]
 coord=[[x[i] for i in indices] for x in coord][1:]
 coord=[[i, int(j), int(k)] for i,j,k in coord]
 
-codonmap=open('codonmap.txt','r').readlines()
+codonmap=open(codonmapfile,'r').readlines()
 codonmap=[line.strip().split() for line in codonmap]
 codondict=(dict(codonmap))
 

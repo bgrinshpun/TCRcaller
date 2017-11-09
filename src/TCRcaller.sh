@@ -13,8 +13,11 @@
 #      -- D cassette
 #      -- keep track of sequences that have zero chromosome match
 
+DIR=`pwd`
+SCRIPT_PATH=$(dirname $0)
+scriptname=$(basename $0)
+
 function usage() {
-    scriptname=`basename $0`
     echo >&2
     echo >&2 "$scriptname: Identify T cell CDR3 sequences and VJ cassettes from raw fastq or mapped bwa files"
     echo >&2 
@@ -88,8 +91,9 @@ if  [ -z "$SAMTOOLS" ]; then
 fi
 
 # included reference files ----------------------------
-refdir="../ref/"
+refdir="$(dirname $SCRIPT_PATH)/ref"
 codonmap=$refdir/codonmap.txt
+echo $codonmap
 TCRAcoords=$refdir/TRA.v37.Coordinates.txt
 TCRBcoords=$refdir/TRB.v37p8.Coordinates.txt
 TCRA_Vmotifs=$refdir/TRAV.motifs.IMGT.txt
@@ -139,7 +143,7 @@ mkdir -p $output
 echo
 echo "INPUT FILE `basename $file`"
 echo
-echo "RESULTS WILL BE PLACED IN \"`pwd`/$output/\""
+echo "RESULTS WILL BE PLACED IN \"$DIR/$output/\""
 echo "------------"
 echo
 
@@ -190,7 +194,7 @@ else
 	echo
 	echo "* alpha chain in progress *";
         refchr="14";
-        samtools view $mappedfile | python findTCR.py $output "A" $TCRAcoords $TCRA_Vmotifs $TCRA_Jmotifs $codonmap $refchr
+        samtools view $mappedfile | python $SCRIPT_PATH/findTCR.py $output "A" $TCRAcoords $TCRA_Vmotifs $TCRA_Jmotifs $codonmap $refchr
 	echo
         echo "alpha chain processed";
         echo
@@ -202,7 +206,7 @@ else
 	echo
 	echo "* beta chain in progress *";
         refchr="gi|114841177:91557-667340";
-        samtools view $mappedfile | python findTCR.py $output "B" $TCRBcoords $TCRB_Vmotifs $TCRB_Jmotifs $codonmap $refchr
+        samtools view $mappedfile | python $SCRIPT_PATH/findTCR.py $output "B" $TCRBcoords $TCRB_Vmotifs $TCRB_Jmotifs $codonmap $refchr
         echo "beta chain processed";
 	echo
         echo "compiling sequence counts"
