@@ -24,7 +24,7 @@ function usage() {
     echo USAGE: >&2
     echo >&2 "  " $scriptname [-i path/to/input_file] [-o output_name] [-c chain] [-r path/to/genome_reference]
     echo >&2
-    echo >&2 "INPUTS"
+    echo >&2 "INPUTS:"
     echo >&2 "\t-i: Specify an input file either in fastq, sam, or bam format."
     echo >&2 "\t    Presently only single-end reads are allowed." 
     echo >&2
@@ -36,9 +36,17 @@ function usage() {
     echo >&2
     echo >&2 "\t-r: Path to reference genome which has been properly for use with bwa software"
     echo >&2 "\t    Can be excluded if input file is already aligned"
+    echo >&2 
+    echo >&2 "OUTPUTS:"
+    echo >&2 "\tTCRX.final.tsv – Final output file with CDR3 counts"
     echo >&2
+    echo >&2 "\tVJ.called.TCRX.tsv – Processed CDR3 by read id"
     echo >&2
-    echo >&2 "RUN DEMO"
+    echo >&2 "\tVorJonly.TCRX.tsv – Discarded reads with only one cassette (V or J)."
+    echo >&2
+    echo >&2 "\tdiscarded.TCRX.tsv – Discarded reads."
+    echo >&2
+    echo >&2 "RUN DEMO:"
     echo >&2 "\t sh TCRcaller.sh -i ../demo.bam -o demo"
     echo >&2
     echo >&2
