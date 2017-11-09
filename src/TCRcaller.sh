@@ -91,9 +91,14 @@ if  [ -z "$SAMTOOLS" ]; then
 fi
 
 # included reference files ----------------------------
-refdir="$(dirname $SCRIPT_PATH)/ref"
+if [ $SCRIPT_PATH == "." ]; then
+        refdir="../ref"
+else
+	refdir="$(dirname $SCRIPT_PATH)/ref";
+
+fi
+
 codonmap=$refdir/codonmap.txt
-echo $codonmap
 TCRAcoords=$refdir/TRA.v37.Coordinates.txt
 TCRBcoords=$refdir/TRB.v37p8.Coordinates.txt
 TCRA_Vmotifs=$refdir/TRAV.motifs.IMGT.txt
