@@ -3,7 +3,7 @@ Python tool to extract V,J, and CDR3 information from T cells for both A and B r
 
 Author: Boris Grinshpun, 2017
 
-## TO RUN DEMO
+## To run demo
 
 `sh TCRcaller.sh -i ../demo.bam -o demo`
 
