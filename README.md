@@ -10,7 +10,7 @@ Author: Boris Grinshpun, 2017
 Results are stored in a newly created demo directory
 
 FOR HELP WITH OPTIONS
-`./TCRcaller.sh -h`
+`sh TCRcaller.sh -h`
 
 ## Dependencies:
 SAMtools: http://samtools.sourceforge.net/
