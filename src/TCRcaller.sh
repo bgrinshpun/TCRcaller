@@ -25,21 +25,21 @@ function usage() {
     echo >&2 "  " $scriptname [-i path/to/input_file] [-o output_name] [-c chain] [-r path/to/genome_reference]
     echo >&2
     echo >&2 "INPUTS"
-    echo -e >&2 "\t-i: Specify an input file either in fastq, sam, or bam format."
-    echo -e >&2 "\t    Presently only single-end reads are allowed." 
+    echo >&2 "\t-i: Specify an input file either in fastq, sam, or bam format."
+    echo >&2 "\t    Presently only single-end reads are allowed." 
     echo >&2
-    echo -e >&2 "\t-o: Output name. A directory with this name will be created."
-    echo -e >&2 "\t    Default [output]"
+    echo >&2 "\t-o: Output name. A directory with this name will be created."
+    echo >&2 "\t    Default [output]"
     echo >&2
-    echo -e >&2 "\t-c: TCR chain to process. Must be either A (TCRA) or B (TCRB)."
-    echo -e >&2 "\t    If this option is not included both chains are processed."
+    echo >&2 "\t-c: TCR chain to process. Must be either A (TCRA) or B (TCRB)."
+    echo >&2 "\t    If this option is not included both chains are processed."
     echo >&2
-    echo -e >&2 "\t-r: Path to reference genome which has been properly for use with bwa software"
-    echo -e >&2 "\t    Can be excluded if input file is already aligned"
+    echo >&2 "\t-r: Path to reference genome which has been properly for use with bwa software"
+    echo >&2 "\t    Can be excluded if input file is already aligned"
     echo >&2
     echo >&2
     echo >&2 "RUN DEMO"
-    echo >&2  "TODO"
+    echo >&2 "\t sh TCRcaller.sh -i ../demo.bam -o demo"
     echo >&2
     echo >&2
     echo >&2 "Author: Boris Grinshpun (bg2178@columbia.edu), 2017"
@@ -169,7 +169,7 @@ if [ "$chain" == "A" ]; then
 	echo
 	echo "compiling sequence counts"
 	echo
-	echo -e "count\tnucleotide\tcdr3\tVgene\tJgene" > $output/TCRA.final.tsv
+	echo "count\tnucleotide\tcdr3\tVgene\tJgene" > $output/TCRA.final.tsv
         sed 1d $output/VJcalled.TCRA.tsv | cut -f2,3,4,5 | sort | uniq -c | awk 'OFS="\t"{print $1,$2,$3,$4,$5}' | sort -rnk1  >> $output/TCRA.final.tsv
 	echo
 	echo "FINISHED"
@@ -184,7 +184,7 @@ elif [ "$chain" == "B" ]; then
         echo "compiling sequence counts"
         echo
 	echo $output
-        echo -e "count\tnucleotide\tcdr3\tVgene\tJgene" > $output/TCRB.final.tsv
+        echo "count\tnucleotide\tcdr3\tVgene\tJgene" > $output/TCRB.final.tsv
         sed 1d $output/VJcalled.TCRB.tsv | cut -f2,3,4,5 | sort | uniq -c | awk 'OFS="\t"{print $1,$2,$3,$4,$5}' | sort -rnk1  >> $output/TCRB.final.tsv
         echo
 	echo "FINISHED"
@@ -200,7 +200,7 @@ else
         echo
         echo "compiling sequence counts"
         echo
-        echo -e "count\tnucleotide\tcdr3\tVgene\tJgene" > $output/TCRA.final.tsv
+        echo "count\tnucleotide\tcdr3\tVgene\tJgene" > $output/TCRA.final.tsv
         sed 1d $output/VJcalled.TCRA.tsv | cut -f2,3,4,5 | sort | uniq -c | awk 'OFS="\t"{print $1,$2,$3,$4,$5}' | sort -rnk1  >> $output/TCRA.final.tsv
 	echo
 	echo
@@ -211,7 +211,7 @@ else
 	echo
         echo "compiling sequence counts"
         echo
-        echo -e "count\tnucleotide\tcdr3\tVgene\tJgene" > $output/TCRB.final.tsv
+        echo "count\tnucleotide\tcdr3\tVgene\tJgene" > $output/TCRB.final.tsv
         sed 1d $output/VJcalled.TCRB.tsv | cut -f2,3,4,5 | sort | uniq -c | awk 'OFS="\t"{print $1,$2,$3,$4,$5}' | sort -rnk1  >> $output/TCRB.final.tsv
         echo
         echo "FINISHED"
